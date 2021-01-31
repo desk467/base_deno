@@ -1,0 +1,11 @@
+{
+  "deno.enable": true,
+  "deno.lint": true,
+  "editor.formatOnSave": true,
+  "deno.import_intellisense_origins": {
+    "https://deno.land": true
+  },
+  "deno.unstable": true,
+  "deno.codeLens.implementations": true,
+  "deno.codeLens.references": true
+}

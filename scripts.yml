@@ -1,0 +1,31 @@
+envFile:
+  - .env
+env:
+  PORT: 8000
+
+scripts:
+  setup:
+    desc: Download dependencies
+    cmd: deno cache --reload --lock=lock.json --lock-write src/deps.ts
+  start:
+    desc: Runs server
+    cmd: deno run --allow-net=0.0.0.0:8000 --allow-env src/server.ts
+    watch: true
+  lint:
+    desc: Analyze code with default deno linter
+    cmd: deno lint
+  format: deno fmt
+  pre-commit:
+    cmd:
+      - vr lint
+      - vr format
+    gitHook: pre-commit
+  test:
+    desc: Runs test suite
+    cmd: deno test -A
+  compile:
+    desc: Compile project in a self contained executable
+    cmd:
+      - rm -rf dist
+      - mkdir dist
+      - deno compile --allow-net=0.0.0.0:8000 --allow-env --output dist/cms src/server.ts
