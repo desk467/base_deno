@@ -8,11 +8,11 @@ on:
 
 jobs:
   test:
-    runs-on: ${{ matrix.os }} # runs a test on Ubuntu, Windows and macOS
+    runs-on: ${{ matrix.os }}
 
     strategy:
       matrix:
-        deno: ["v1.13.2"]
+        deno: ["v1.16.4"]
         os: [ubuntu-latest]
 
     steps:
@@ -28,7 +28,7 @@ jobs:
         run: deno cache src/deps.ts
 
       - name: Run Tests
-        run: deno test -A --unstable
+        run: deno test --import-map=import_map.json -A
 
       - name: Run Linter
-        run: deno lint --unstable
+        run: deno lint

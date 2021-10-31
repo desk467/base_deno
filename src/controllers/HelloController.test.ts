@@ -1,10 +1,10 @@
-import { Oak } from "../deps.ts";
-import { assertEquals } from "https://deno.land/std@0.84.0/testing/asserts.ts";
+import { asserts, Oak } from "/src/deps.ts";
+import { app } from "/src/app.ts";
+import { HelloController } from "/src/controllers/HelloController.ts";
 
-import { app } from "../app.ts";
-import { HelloController } from "./HelloController.ts";
+const { test } = Deno;
 
-Deno.test({
+test({
   name: "should return Hello World when calling hello",
   fn(): void {
     // arrange
@@ -12,9 +12,9 @@ Deno.test({
     const controller = new HelloController(app);
 
     // act
-    controller.hello(<Oak.Context> ctx);
+    controller.hello(<Oak.Context>ctx);
 
     // assert
-    assertEquals(ctx.response.body, "Hello World!");
+    asserts.assertEquals(ctx.response.body, "Hello World!");
   },
 });

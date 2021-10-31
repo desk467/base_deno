@@ -1,8 +1,8 @@
-import { app } from "./app.ts";
-import { PORT } from "./config.ts";
-import { Controller } from "./core/Controller.ts";
-import * as controllers from "./controllers/index.ts";
-import { log } from "./deps.ts";
+import { app } from "/src/app.ts";
+import { PORT } from "/src/config.ts";
+import { Controller } from "/src/core/Controller.ts";
+import * as controllers from "/src/controllers/index.ts";
+import { log } from "/src/deps.ts";
 
 Controller
   .registerAllControllers(app, controllers);

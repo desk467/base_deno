@@ -1,5 +1,5 @@
-import { Oak } from "../deps.ts";
-import { Controller } from "../core/Controller.ts";
+import { Oak } from "/src/deps.ts";
+import { Controller } from "/src/core/Controller.ts";
 
 export class HelloController extends Controller {
   defineRoutes() {

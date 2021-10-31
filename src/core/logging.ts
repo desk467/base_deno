@@ -1,5 +1,5 @@
-import { log } from "../deps.ts";
-import { LOG_LEVEL } from "../config.ts";
+import { log } from "/src/deps.ts";
+import { LOG_LEVEL } from "/src/config.ts";
 
 /**
  * setupLogging sets up default logging configurations.

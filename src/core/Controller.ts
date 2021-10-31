@@ -1,4 +1,4 @@
-import { log, Oak } from "../deps.ts";
+import { log, Oak } from "/src/deps.ts";
 
 interface ControllerList {
   [name: string]: typeof Controller;
