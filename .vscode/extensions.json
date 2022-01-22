@@ -1,6 +1,7 @@
 {
   "recommendations": [
     "denoland.vscode-deno",
-    "umbo.vscode-velociraptor"
+    "umbo.vscode-velociraptor",
+    "humao.rest-client"
   ]
 }
