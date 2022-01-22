@@ -12,7 +12,7 @@ jobs:
 
     strategy:
       matrix:
-        deno: ["v1.16.4"]
+        deno: ["v1.18.0"]
         os: [ubuntu-latest]
 
     steps:
@@ -32,3 +32,13 @@ jobs:
 
       - name: Run Linter
         run: deno lint
+
+      - name: Compile
+        run: deno compile --import-map=import_map.json --allow-net=0.0.0.0:8000 --allow-env --output dist/app src/server.ts
+
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: dist
+          path: |
+            dist/app

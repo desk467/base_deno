@@ -28,4 +28,4 @@ scripts:
     cmd:
       - rm -rf dist
       - mkdir dist
-      - deno compile --import-map=import_map.json --allow-net=0.0.0.0:8000 --allow-env --output dist/cms src/server.ts
+      - deno compile --import-map=import_map.json --allow-net=0.0.0.0:8000 --allow-env --output dist/app src/server.ts

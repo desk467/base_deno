@@ -12,7 +12,7 @@ test({
     const controller = new HelloController(app);
 
     // act
-    controller.hello(<Oak.Context>ctx);
+    controller.hello(<Oak.Context> ctx);
 
     // assert
     asserts.assertEquals(ctx.response.body, "Hello World!");

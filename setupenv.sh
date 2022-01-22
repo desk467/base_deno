@@ -30,7 +30,7 @@ if [ $(echo "$?") -eq 0 ]; then
     echo "\t- Velociraptor ja instalado."
 else
     echo "\t- Instalando Velociraptor"
-    deno install -qA -n vr https://deno.land/x/velociraptor@1.3.0/cli.ts
+    deno install -qA -n vr https://deno.land/x/velociraptor@1.4.0/cli.ts
 fi
 
 echo '---'
