@@ -1,12 +1,14 @@
 #!/bin/sh
+set -euo pipefail
+IFS=$'\n\t'
 
 echo "1. Verificando instalacao do Deno"
 
-DENO_INSTALLED=$(command -v vr)
+DENO_INSTALLED=$(command -v deno)
 if [ $(echo "$?") -eq 0 ]; then
-    echo "\t- Deno ja instalado."
+    echo "- Deno instalado ✅"
 else
-    echo "\t- Instalando Deno"
+    echo "- Instalando Deno"
     curl -fsSL https://deno.land/x/install/install.sh | sh
 
     BASH_FILE="~/.bashrc"
@@ -27,9 +29,9 @@ echo "2. Verificando instalacao do Velociraptor"
 VR_INSTALLED=$(command -v vr)
 
 if [ $(echo "$?") -eq 0 ]; then
-    echo "\t- Velociraptor ja instalado."
+    echo "- Velociraptor instalado ✅"
 else
-    echo "\t- Instalando Velociraptor"
+    echo "- Instalando Velociraptor"
     deno install -qA -n vr https://deno.land/x/velociraptor@1.4.0/cli.ts
 fi
 
@@ -39,11 +41,11 @@ echo "3. Criando arquivo dotenv"
 DOTENV_GENERATED=$(cat .env)
 
 if [ $(echo "$?") -eq 0 ]; then
-    echo "\t- dotenv ja criado."
+    echo "- dotenv ja criado ✅"
 else
-    echo "\t- Criando dotenv"
+    echo "- Criando dotenv"
     cp .env.template .env
 fi
 
 echo '---'
-echo "Pronto."
+echo "Tudo certo 🎉"
