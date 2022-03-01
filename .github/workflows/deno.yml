@@ -6,8 +6,11 @@ on:
   pull_request:
     branches: [main]
 
+env:
+  DENO_DIR: ~/deps
+
 jobs:
-  test:
+  ci:
     runs-on: ${{ matrix.os }}
 
     strategy:
@@ -24,14 +27,20 @@ jobs:
         with:
           deno-version: ${{ matrix.deno }} # tests across multiple Deno versions
 
+      - name: Install dependencies
+        run: deno cache --reload --lock=lock.json src/deps.ts
+
       - name: Cache Dependencies
-        run: deno cache src/deps.ts
+        uses: actions/cache@v2
+        with:
+          path: ${{ env.DENO_DIR }}
+          key: ${{ hashFiles('lock.json') }}
 
       - name: Run Tests
         run: deno test --import-map=import_map.json -A
 
       - name: Run Linter
-        run: deno lint
+        run: deno lint --ignore=~/deps
 
       - name: Compile
         run: deno compile --import-map=import_map.json --allow-net=0.0.0.0:8000 --allow-env --output dist/app src/server.ts
