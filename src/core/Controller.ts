@@ -1,5 +1,5 @@
 import { log, Oak } from "/src/deps.ts";
-
+import { NotImplementedError } from "./exceptions.ts"
 interface ControllerList {
   [name: string]: typeof Controller;
 }
@@ -40,5 +40,7 @@ export class Controller {
     }
   }
 
-  defineRoutes() {}
+  defineRoutes() {
+    throw new NotImplementedError("You should implement defineRoutes() method!", "defineRoutes")
+  }
 }

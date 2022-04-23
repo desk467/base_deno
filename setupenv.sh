@@ -32,7 +32,7 @@ if [ $(echo "$?") -eq 0 ]; then
     echo "- dotenv ja criado ✅"
 else
     echo "- Criando dotenv"
-    cp .env.template .env
+    cp .env.defaults .env
 fi
 
 echo '---'

@@ -15,8 +15,8 @@
   "tasks": {
     "setup:ci": "deno cache --reload --lock=lock.json --lock-write src/deps.ts",
     "setup": "deno cache --reload --lock=lock.json --lock-write src/deps.ts",
-    "start": "deno run --import-map=import_map.json --allow-net=0.0.0.0:8000 --allow-env src/server.ts",
-    "build": "deno compile --import-map=import_map.json --allow-net=0.0.0.0:8000 --allow-env --output dist/app src/server.ts",
+    "start": "deno run --import-map=import_map.json --allow-net=0.0.0.0:$PORT --allow-env --allow-read=.env,.env.defaults src/server.ts",
+    "build": "deno compile --import-map=import_map.json --allow-net=0.0.0.0:$PORT --allow-env --allow-read=.env,.env.defaults --output dist/app src/server.ts",
     "test": "deno test --import-map=import_map.json",
     "lint": "deno lint",
     "fmt": "deno fmt"
