@@ -15,7 +15,7 @@ jobs:
 
     strategy:
       matrix:
-        deno: ["v1.19.1"]
+        deno: ["v1.21.0"]
         os: [ubuntu-latest]
 
     steps:
@@ -28,7 +28,7 @@ jobs:
           deno-version: ${{ matrix.deno }} # tests across multiple Deno versions
 
       - name: Install dependencies
-        run: deno cache --reload --lock=lock.json src/deps.ts
+        run: deno task setup:ci
 
       - name: Cache Dependencies
         uses: actions/cache@v2
@@ -37,13 +37,13 @@ jobs:
           key: ${{ hashFiles('lock.json') }}
 
       - name: Run Tests
-        run: deno test --import-map=import_map.json -A
+        run: deno task test
 
       - name: Run Linter
-        run: deno lint --ignore=~/deps
+        run: deno task lint
 
       - name: Compile
-        run: deno compile --import-map=import_map.json --allow-net=0.0.0.0:8000 --allow-env --output dist/app src/server.ts
+        run: deno task build
 
       - name: Archive production artifacts
         uses: actions/upload-artifact@v2

@@ -24,19 +24,7 @@ else
 fi
 
 echo '---'
-echo "2. Verificando instalacao do Velociraptor"
-
-VR_INSTALLED=$(command -v vr)
-
-if [ $(echo "$?") -eq 0 ]; then
-    echo "- Velociraptor instalado ✅"
-else
-    echo "- Instalando Velociraptor"
-    deno install -qA -n vr https://deno.land/x/velociraptor@1.4.0/cli.ts
-fi
-
-echo '---'
-echo "3. Criando arquivo dotenv"
+echo "2. Criando arquivo dotenv"
 
 DOTENV_GENERATED=$(cat .env)
 
