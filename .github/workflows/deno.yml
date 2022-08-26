@@ -15,7 +15,7 @@ jobs:
 
     strategy:
       matrix:
-        deno: ["v1.21.1"]
+        deno: ["v1.22.1"]
         os: [ubuntu-latest]
 
     steps:
@@ -49,8 +49,8 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: dist
-          path: |
-            dist/app
+          path: dist/app
+          retention-days: 3
       - name: Generate coverage.lcov
         run: deno task coverage
       - name: Upload coverage to Codecov

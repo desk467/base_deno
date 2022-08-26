@@ -1,6 +1,6 @@
 .env
 dist/
 .idea/
-.DS_Store/
+.DS_Store
 cov_profile/
 *.lcov
