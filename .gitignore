@@ -5,3 +5,4 @@ dist/
 cov_profile/
 *.lcov
 lcov.info
+html_cov/
