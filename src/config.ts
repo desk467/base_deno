@@ -1,15 +1,15 @@
-import { dotenv } from '/src/deps.ts'
+import { load } from "std/dotenv/mod.ts";
 
 let config: Record<string, string> = {
   PORT: "8000",
   LOG_LEVEL: "DEBUG",
-}
+};
 
 async function init() {
-  config = await dotenv.config()
+  config = await load();
 }
 
-await init()
+await init();
 
 type LOG_LEVEL_TYPE =
   | "NOTSET"
@@ -20,4 +20,4 @@ type LOG_LEVEL_TYPE =
   | "CRITICAL";
 
 export const PORT = Number.parseInt(config.PORT);
-export const LOG_LEVEL = <LOG_LEVEL_TYPE>config.LOG_LEVEL;
+export const LOG_LEVEL = <LOG_LEVEL_TYPE> config.LOG_LEVEL;

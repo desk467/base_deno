@@ -1,22 +1,20 @@
-FROM denoland/deno:1.22.1 as base
+FROM denoland/deno:1.30.1 as base
 
 WORKDIR /opt/app
 
-COPY deno.json .
+FROM base as development
 
-COPY lock.json .
-
-COPY src/deps.ts src/deps.ts
-
-COPY import_map.json .
-
-RUN deno task setup
+RUN apt update && apt install git curl -y
 
 FROM base as build
 
 COPY . .
 
 RUN deno task build
+
+FROM scratch as out
+
+COPY --from=build /opt/app/dist .
 
 FROM debian:stretch as production
 

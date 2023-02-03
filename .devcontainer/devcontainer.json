@@ -1,12 +1,19 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
 // https://github.com/microsoft/vscode-dev-containers/tree/v0.231.6/containers/docker-existing-dockerfile
 {
-	"name": "Deno Workspace",
-	"context": "..",
-	"dockerFile": "../Dockerfile.dev",
-	"settings": {},
-	"extensions": [
-		"denoland.vscode-deno",
-		"humao.rest-client"
-	]
+  "name": "Deno Workspace",
+  "context": "..",
+  "dockerFile": "../Dockerfile",
+  "build": {
+    "target": "base"
+  },
+  "customizations": {
+    "vscode": {
+      "settings": {},
+      "extensions": [
+        "denoland.vscode-deno",
+        "humao.rest-client"
+      ]
+    }
+  }
 }

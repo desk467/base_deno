@@ -15,12 +15,12 @@ jobs:
 
     strategy:
       matrix:
-        deno: ["v1.22.1"]
+        deno: ["v1.30.1"]
         os: [ubuntu-latest]
 
     steps:
       - name: Setup repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Setup Deno
         uses: denoland/setup-deno@main
@@ -28,13 +28,13 @@ jobs:
           deno-version: ${{ matrix.deno }} # tests across multiple Deno versions
 
       - name: Install dependencies
-        run: deno task setup:ci
+        run: deno task setup
 
       - name: Cache Dependencies
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ${{ env.DENO_DIR }}
-          key: ${{ hashFiles('lock.json') }}
+          key: ${{ hashFiles('deno.lock') }}
 
       - name: Run Tests
         run: deno task test
@@ -46,7 +46,7 @@ jobs:
         run: deno task build
 
       - name: Archive production artifacts
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: dist
           path: dist/app
