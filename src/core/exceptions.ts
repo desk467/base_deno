@@ -1,8 +1,8 @@
 export class NotImplementedError extends Error {
-    private methodName: string
+  private methodName: string;
 
-    constructor(message: string, methodName: string) {
-        super(message)
-        this.methodName = methodName
-    }
+  constructor(message: string, methodName: string) {
+    super(message);
+    this.methodName = methodName;
+  }
 }

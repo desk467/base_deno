@@ -1,4 +1,4 @@
-import { log } from "/src/deps.ts";
+import * as log from "std/log/mod.ts";
 import { LOG_LEVEL } from "/src/config.ts";
 
 /**

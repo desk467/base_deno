@@ -1,6 +1,8 @@
-import { asserts, bdd, Oak } from "/src/deps.ts";
+import * as bdd from "std/testing/bdd.ts";
+import * as asserts from "std/testing/asserts.ts";
+import * as Oak from "oak/mod.ts";
 import { app } from "/src/app.ts";
-import { HelloController } from "/src/controllers/HelloController.ts";
+import { HelloController } from "controllers/HelloController.ts";
 
 const { describe, it } = bdd;
 
@@ -11,9 +13,9 @@ describe("HelloController", () => {
     const controller = new HelloController(app);
 
     // act
-    controller.hello(<Oak.Context>ctx);
+    controller.hello(<Oak.Context> ctx);
 
     // assert
     asserts.assertEquals(ctx.response.body, "Hello World!");
-  })
-})
+  });
+});
