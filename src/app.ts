@@ -1,3 +1,3 @@
-import * as Oak from "oak/mod.ts";
+import * as Oak from "@oak/oak";
 
 export const app = new Oak.Application();

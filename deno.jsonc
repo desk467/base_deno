@@ -1,0 +1,59 @@
+{
+  "compilerOptions": {
+    "strict": true
+  },
+  "lint": {
+    "include": [
+      "src/"
+    ]
+  },
+  "imports": {
+    "./": "./",
+    "/": "./",
+    "@oak/oak": "jsr:@oak/oak@^16.0.0",
+    "@std/assert": "jsr:@std/assert@^0.223.0",
+    "@std/dotenv": "jsr:@std/dotenv@^0.223.0",
+    "@std/log": "jsr:@std/log@^0.223.0",
+    "@std/testing": "jsr:@std/testing@^0.223.0",
+    "controllers/": "./src/controllers/",
+    "core/": "./src/core/"
+  },
+  "fmt": {
+    "exclude": [
+      ".vscode/",
+      ".idea/"
+    ],
+    "include": [
+      "src/"
+    ]
+  },
+  "test": {
+    "include": [
+      "*.test.ts"
+    ]
+  },
+  "tasks": {
+    // Cacheia as dependencias
+    "setup": "deno cache src/server.ts",
+    // Inicia o web service em uma $PORT definida (default: 8000)
+    "start": "deno run --allow-net=0.0.0.0:$PORT --allow-env --allow-read=.env,.env.defaults,.env.example src/server.ts",
+    // Inicia o web service em desenvolvimento (auto-reload) em uma $PORT definida (default: 8000)
+    "start:dev": "deno run --watch --allow-net=0.0.0.0:$PORT --allow-env --allow-read=.env,.env.defaults,.env.example src/server.ts",
+    // Gera um binário executável da aplicação em dist/app
+    "build": "deno compile --allow-net=0.0.0.0:$PORT --allow-env --allow-read=.env,.env.defaults,.env.example --output dist/app src/server.ts",
+    // Executa todos os testes
+    "test": "deno test .",
+    // Gera um arquivo .lcov contendo a cobertura de código
+    "coverage": "deno test . --coverage=cov_profile && deno coverage --lcov cov_profile/ --output=coverage.lcov",
+    // Gera um arquivo HTML contendo a cobertura de código
+    "coverage:html": "deno task coverage && genhtml -o html_cov coverage.lcov && file_server html_cov",
+    // Executa o linter
+    "lint": "deno lint",
+    // Executa a ferramenta de auto formatacao
+    "fmt": "deno fmt",
+    // Cria uma imagem Docker desta app
+    "docker:build": "docker build . --target=production --tag base_deno:latest",
+    // Executa um container a partir da imagem docker previamente gerada
+    "docker:start": "docker run --rm -p 8000:8000 base_deno:latest"
+  }
+}

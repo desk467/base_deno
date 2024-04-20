@@ -1,4 +1,4 @@
-import * as Oak from "oak/mod.ts";
+import * as Oak from "@oak/oak";
 import { Controller } from "/src/core/Controller.ts";
 
 export class HelloController extends Controller {

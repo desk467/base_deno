@@ -1,5 +1,5 @@
-import * as Oak from "oak/mod.ts";
-import * as log from "std/log/mod.ts";
+import * as Oak from "@oak/oak";
+import * as log from "@std/log";
 import { NotImplementedError } from "./exceptions.ts";
 interface ControllerList {
   [name: string]: typeof Controller;

@@ -1,6 +1,6 @@
-import * as bdd from "std/testing/bdd.ts";
-import * as asserts from "std/testing/asserts.ts";
-import * as Oak from "oak/mod.ts";
+import * as asserts from "@std/assert";
+import * as bdd from "@std/testing/bdd";
+import * as Oak from "@oak/oak";
 import { app } from "/src/app.ts";
 import { HelloController } from "controllers/HelloController.ts";
 

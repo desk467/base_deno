@@ -1,4 +1,5 @@
-import { load } from "std/dotenv/mod.ts";
+import { load } from "@std/dotenv";
+import { LevelName } from "@std/log";
 
 let config: Record<string, string> = {
   PORT: "8000",
@@ -11,13 +12,5 @@ async function init() {
 
 await init();
 
-type LOG_LEVEL_TYPE =
-  | "NOTSET"
-  | "DEBUG"
-  | "INFO"
-  | "WARNING"
-  | "ERROR"
-  | "CRITICAL";
-
 export const PORT = Number.parseInt(config.PORT);
-export const LOG_LEVEL = <LOG_LEVEL_TYPE> config.LOG_LEVEL;
+export const LOG_LEVEL = <LevelName> config.LOG_LEVEL;

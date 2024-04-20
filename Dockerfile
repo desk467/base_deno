@@ -1,10 +1,8 @@
-FROM denoland/deno:1.30.1 as base
+FROM denoland/deno:1.42.4 as base
+
+RUN apt update && apt install git curl unzip -y
 
 WORKDIR /opt/app
-
-FROM base as development
-
-RUN apt update && apt install git curl -y
 
 FROM base as build
 
@@ -16,7 +14,9 @@ FROM scratch as out
 
 COPY --from=build /opt/app/dist .
 
-FROM debian:stretch as production
+FROM ubuntu:latest as production
+
+WORKDIR /opt/app
 
 COPY --from=build /opt/app/dist .
 
