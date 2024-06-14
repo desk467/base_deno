@@ -37,7 +37,7 @@ export class Controller {
     for (const ControllerClass of Object.values(controllers)) {
       const instance = new ControllerClass(app);
       instance.register();
-      log.info(`"${ControllerClass.name}" routes registered.`);
+      log.debug(`"${ControllerClass.name}" routes registered.`);
     }
   }
 

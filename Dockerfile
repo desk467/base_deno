@@ -1,4 +1,4 @@
-FROM denoland/deno:1.42.4 as base
+FROM denoland/deno:1.44.2 as base
 
 RUN apt update && apt install git curl unzip -y
 
@@ -8,7 +8,7 @@ FROM base as build
 
 COPY . .
 
-RUN deno task build
+RUN --mount=type=cache,target=${DENO_DIR} deno task build
 
 FROM scratch as out
 

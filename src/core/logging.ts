@@ -7,7 +7,10 @@ import { LOG_LEVEL } from "/src/config.ts";
 export async function setupLogging() {
   await log.setup({
     handlers: {
-      console: new log.handlers.ConsoleHandler("DEBUG"),
+      console: new log.ConsoleHandler("DEBUG", {
+        formatter: log.formatters.jsonFormatter,
+        useColors: true,
+      }),
     },
     loggers: {
       default: {
